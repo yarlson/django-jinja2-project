@@ -7,3 +7,4 @@ South==0.8.1
 Coffin==0.3.8
 Jinja2==2.7.1
 webassets==0.9
+django-assets==0.8

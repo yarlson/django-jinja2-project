@@ -7,14 +7,15 @@ from sys import path
 
 ########## PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
-DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+APP_PATH = dirname(dirname(abspath(__file__)))
+DJANGO_ROOT = dirname(APP_PATH)
 
 # Absolute filesystem path to the top-level project folder:
 SITE_ROOT = dirname(DJANGO_ROOT)
 path.insert(0, join(SITE_ROOT, 'apps'))
 
 # Site name:
-SITE_NAME = basename(DJANGO_ROOT)
+SITE_NAME = basename(APP_PATH)
 
 # Add our project to our pythonpath, this way we don't need to type our project
 # name in our dotted import paths:
@@ -110,7 +111,7 @@ STATICFILES_FINDERS = (
 ########## SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Note: This key only used for development and testing.
-SECRET_KEY = r"{{ secret_key }}"
+SECRET_KEY = "{{ secret_key }}"
 ########## END SECRET CONFIGURATION
 
 
@@ -171,7 +172,7 @@ MIDDLEWARE_CLASSES = (
 
 ########## URL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
-ROOT_URLCONF = '%s.urls' % SITE_NAME
+ROOT_URLCONF = 'apps.%s.urls' % SITE_NAME
 ########## END URL CONFIGURATION
 
 
@@ -244,5 +245,5 @@ LOGGING = {
 
 ########## WSGI CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
-WSGI_APPLICATION = 'wsgi.application'
+WSGI_APPLICATION = 'apps.%s.wsgi.application' % SITE_NAME
 ########## END WSGI CONFIGURATION
